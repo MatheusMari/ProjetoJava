@@ -12,6 +12,7 @@ var cadastroRouter = require("./routes/cadastro");
 var usersRouter = require("./routes/usuarios");
 var adminRouter = require("./routes/admin");
 var loginRouter = require("./routes/login");
+var criadorPaginasRouter = require("./routes/criadorPaginas");
 
 var app = express();
 
@@ -43,5 +44,6 @@ app.use("/cadastrar", cadastroRouter);
 app.use("/login", loginRouter);
 app.use("/usuarios", usersRouter);
 app.use("/admin", adminRouter);
+app.use("/criarPagina", criadorPaginasRouter);
 
 module.exports = app;

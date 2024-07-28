@@ -36,6 +36,8 @@ router.get("/", function (req, res, next) {
 
 	// Redireciona se o usuário existe
 	if (usuarioExiste) {
+		req.session.user = usuarioLogin;
+
 		// Checa se o usuário é um admin
 		if (
 			usuarioLogin.username == process.env.USER &&
@@ -44,7 +46,7 @@ router.get("/", function (req, res, next) {
 			res.redirect("/admin");
 		}
 
-		res.redirect("/usuarios");
+		res.redirect("/");
 	} else {
 		res.send("Usuário não existe");
 	}
