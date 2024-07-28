@@ -8,8 +8,10 @@ require("dotenv").config();
 var mustacheExpress = require("mustache-express");
 
 var indexRouter = require("./routes/index");
+var cadastroRouter = require("./routes/cadastro");
 var usersRouter = require("./routes/usuarios");
 var adminRouter = require("./routes/admin");
+var loginRouter = require("./routes/login");
 
 var app = express();
 
@@ -37,6 +39,8 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/cadastrar", cadastroRouter);
+app.use("/login", loginRouter);
 app.use("/usuarios", usersRouter);
 app.use("/admin", adminRouter);
 
