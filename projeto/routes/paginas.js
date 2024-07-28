@@ -3,8 +3,6 @@
 var express = require("express");
 var router = express.Router();
 
-var paginas = [];   // Lista de todas as páginas
-
 /* GET paginas. */
 router.get("/", function (req, res, next) {
 	// Verificar se usuário está logado
@@ -28,14 +26,17 @@ router.post("/", function (req, res, next) {
         html: req.body.html
     };
 
-    paginas.push(pagina);
+    req.paginas.push(pagina);
 
     res.redirect('/paginas/' + req.body.url);
 });
 
 /* GET pagina criada */
 router.get("/:url", function (req, res, next) {
-    var pagina = paginas.find(p => p.url === req.params.url);
+	// Variável Boolean que retorna se encontrou dada url na lista de paginas
+    var pagina = req.paginas.find(p => p.url === req.params.url);
+
+	// Renderiza o html na página
     if (pagina) {
         res.send(pagina.html);
     } else {

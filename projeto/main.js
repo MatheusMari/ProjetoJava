@@ -40,6 +40,15 @@ app.use(
 	})
 );
 
+var paginas = [];   // Lista de todas as páginas
+
+// Middleware para manter páginas uma variável global
+// A variável poderá ser acessada em toda a aplicação
+app.use((req, res, next) => {
+    req.paginas = paginas;
+    next();
+});
+
 app.use("/", indexRouter);
 app.use("/cadastrar", cadastroRouter);
 app.use("/login", loginRouter);
