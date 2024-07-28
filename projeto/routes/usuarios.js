@@ -31,7 +31,7 @@ router.get("/", function (req, res, next) {
 	};
 
 	// Verifica se ocorreu algum problema no login
-	const { error, _ } = validadorCadastro.validate(user);
+	const { error, _ } = validadorLogin.validate(user);
 
 	if (error) {
 		return res.status(400).send(error.details[0].message);
