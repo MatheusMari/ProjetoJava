@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-var validador = require("../validator/Cadastro.js");
+var validadorCadastro = require("../validator/Cadastro.js");
+var validadorLogin = require("../validator/Login.js");
 
 var usuarios = [];
 
@@ -28,6 +29,13 @@ router.get("/", function (req, res, next) {
 		username: req.query.username,
 		senha: req.query.senha,
 	};
+
+	// Verifica se ocorreu algum problema no login
+	const { error, _ } = validadorCadastro.validate(user);
+
+	if (error) {
+		return res.status(400).send(error.details[0].message);
+	}
 
 	// Checa se o usuário esta na lsita de usuarios
 	const usuarioExiste = usuarios.some((usuario) =>
@@ -61,7 +69,7 @@ router.post("/", function (req, res, next) {
 	user.termos = user.termos === "on";
 
 	// Valida o usuário antes de colocar na sessão
-	const { error, _ } = validador.validate(user);
+	const { error, _ } = validadorCadastro.validate(user);
 
 	if (error) {
 		return res.status(400).send(error.details[0].message);
