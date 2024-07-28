@@ -15,4 +15,14 @@ router.get("/", function (req, res, next) {
     res.render('criadorPaginas');
 });
 
+/* POST paginas. */
+router.post("/", function (req, res, next) {
+	// Verificar se usuário está logado
+	if (!req.session.user) {
+        res.send('Usuário não conectado');
+	}
+
+    res.send(req.body);
+});
+
 module.exports = router;

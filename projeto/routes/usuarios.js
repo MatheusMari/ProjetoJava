@@ -6,6 +6,7 @@ var validadorLogin = require("../validator/Login.js");
 
 var usuarios = [];
 
+// Apenas para testes
 usuarios.push({
 	username: "111",
 	email: "111@1.com",
@@ -13,7 +14,7 @@ usuarios.push({
 	termos: true,
 });
 
-// Função para comparar usuários ignorando o campo "termos"
+// Função para comparar usuários ignorando os campos "termos" e "email"
 function comparaUsuario(usuarioA, usuarioB) {
 	console.log("usuarioB: " + usuarioB.username);
 	return (
@@ -31,7 +32,7 @@ router.get("/", function (req, res, next) {
 	};
 
 	// Verifica se ocorreu algum problema no login
-	const { error, _ } = validadorLogin.validate(user);
+	const { error, _ } = validadorLogin.validate(usuarioLogin);
 
 	if (error) {
 		return res.status(400).send(error.details[0].message);
