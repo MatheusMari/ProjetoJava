@@ -22,7 +22,25 @@ router.post("/", function (req, res, next) {
         res.send('Usuário não conectado');
 	}
 
-    res.send(req.body);
+	var pagina = {
+        titulo: req.body.titulo,
+        url: req.body.url,
+        html: req.body.html
+    };
+
+    paginas.push(pagina);
+
+    res.redirect('/paginas/' + req.body.url);
+});
+
+/* GET pagina criada */
+router.get("/:url", function (req, res, next) {
+    var pagina = paginas.find(p => p.url === req.params.url);
+    if (pagina) {
+        res.send(pagina.html);
+    } else {
+        res.status(404).send('Página não encontrada');
+    }
 });
 
 module.exports = router;
