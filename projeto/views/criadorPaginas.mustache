@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/90f562a26e.js" crossorigin="anonymous"></script>
-    <title>Criador de Pagina</title>
-</head>
-<body>
-    <form action="/paginas" method="POST">
-        <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
-        <input name="url" placeholder="URL Desejado" type="text">
-        <textarea name="html" placeholder="Digite o HTML da página"></textarea>
-        <button type="submit">Criar Página</button>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/90f562a26e.js" crossorigin="anonymous"></script>
+        <title>Criador de Página</title>
+    </head>
+    <body>
+        <form action="/paginas" method="POST" enctype="multipart/form-data">
+            <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
+            <input name="url" placeholder="URL Desejado" type="text">
+            <textarea name="html" placeholder="Digite o HTML da página"></textarea>
+            <div>
+                <p>Escolha uma capa para seu site</p>
+                <input type="file" name="imagem" accept="image/*">
+            </div>
+            <button type="submit">Criar Página</button>
+        </form>
+    </body>
 </html>
