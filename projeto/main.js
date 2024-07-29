@@ -35,7 +35,7 @@ app.use(
 		resave: false,
 		saveUninitialized: true,
 		cookie: {
-			maxAge: 3 * 60 * 1000, // Tempo de vida do cookie em minutos
+			maxAge: 15 * 60 * 1000, // Tempo de vida do cookie em minutos
 		},
 	})
 );
