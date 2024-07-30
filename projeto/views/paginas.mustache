@@ -1,30 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{#logado}}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+        <title>Páginas de usuários</title>
+    </head>
+    <body>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+            .hero-body {
+                font-family: 'Poppins', sans-serif;
+                color: white;
+            }
+
+            .all {
+                width: 100%;
+                height: 100vh;
+                font-family: 'Poppins', sans-serif;
+                background: rgb(0, 134, 187)
+            }
+
+            .final {
+                text-align: center;
+                color: white;
+            }
+
+            .title {
+                color: rgb(234, 234, 234);
+                text-justify: auto;
+            }
+
+            .card {
+                background-color: rgb(130, 130, 130);
+                text-justify: auto;
+            }
+
+            img {
+                background: white;
+                max-width: 290px;
+                max-height: 190px
+            }
+
+            .final {
+                font-size: 25px;
+
+            }
+
+            .baixo {
+                background: rgb(0, 134, 187);
+                text-align: center;
+                color: white;
+            }
+        </style>
+        <div class="all">
+            {{#logado}}
             {{> barra }}
-        {{/logado}}
+            {{/logado}}
 
-        {{^ logado }}
+            {{^ logado }}
             <nav>
-                <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
+                <a href="/"><button type="button">Voltar ao início</button></a>
+                {{ ^ admin }}
+                <a href="/"><button type="button">Pagina admin</button></a>
+                {{ / admin }}
             </nav>
-        {{/ logado }}
+            {{/ logado }}
 
-        {{!
-            Lista de todas as páginas em formato de card
-        }}
-        {{^paginas.length}}
-            <h1>Ainda não foram criadas páginas</h1>
-        {{/paginas.length}}
+            <div class="hero-body">
+                <p class="title has-text-centered mg-5">Aqui estão os sites criados por você!</p>
+                <div class="columns">
+                    {{^paginas.length}}
+                    <h1>Ainda não foram criadas páginas</h1>
+                    {{/paginas.length}}
 
-        {{#paginas.length}}
-            {{> cards }}
-        {{/paginas.length}}
-</body>
+                    {{!
+                    Lista de todas as páginas em formato de card
+                    }}
+                    {{#paginas.length}}
+                    {{> cards }}
+                    {{/paginas.length}}
+
+                </div>
+            </div>
+            <div class="final">
+                <h3>é possivel visualizar os sites criados <b>clicando nos Cards acima</b></h3>
+            </div>
+        </div>
+        <footer class="baixo">
+            <p>trabalho realizado por
+                gabriel floriano
+                matheus marinho
+                robson carvalho
+            </p>
+            <p>Publicado para entrega em 31/07/2024 </p>
+        </footer>
+    </body>
 </html>
