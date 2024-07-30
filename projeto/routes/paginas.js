@@ -4,6 +4,19 @@ var multer = require("multer");
 var path = require("path");
 var fs = require("fs"); // Para ler arquivos e diretórios
 
+// Função para verificar se o usuário é um admin
+function isAdmin(usuario) {
+    if (
+		usuario.username == process.env.USER &&
+        usuario.email == process.env.EMAIL &&
+		usuario.senha == process.env.SENHA
+	) {
+        return true;
+    }
+
+    return false;
+}
+
 // Configurar armazenamento do multer
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,7 +40,8 @@ router.get("/", function (req, res, next) {
     if (!req.session.user) {
         return res.send('Usuário não conectado');
     }
-    res.render('criadorPaginas');
+
+    res.render('paginas', {admin: isAdmin(req.session.user)});
 });
 
 /* POST paginas. */

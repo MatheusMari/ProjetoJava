@@ -13,14 +13,32 @@ usuarios.push({
 	senha: "111111",
 	termos: true,
 });
+usuarios.push({
+	username: "admin",
+	email: "admin@email.com",
+	senha: "admin123",
+	termos: true,
+});
 
 // Função para comparar usuários ignorando os campos "termos" e "email"
 function comparaUsuario(usuarioA, usuarioB) {
-	console.log("usuarioB: " + usuarioB.username);
 	return (
 		usuarioA.username === usuarioB.username &&
 		usuarioA.senha === usuarioB.senha
 	);
+}
+
+// Função para verificar se o usuário é um admin
+function isAdmin(usuario) {
+    if (
+		usuario.username == process.env.USER &&
+        usuario.email == process.env.EMAIL &&
+		usuario.senha == process.env.SENHA
+	) {
+        return true;
+    }
+
+    return false;
 }
 
 /* GET usuarios */
@@ -46,14 +64,6 @@ router.get("/", function (req, res, next) {
 	// Redireciona se o usuário existe
 	if (usuarioExiste) {
 		req.session.user = usuarioLogin;
-
-		// Checa se o usuário é um admin
-		if (
-			usuarioLogin.username == process.env.USER &&
-			usuarioLogin.senha == process.env.SENHA
-		) {
-			res.redirect("/admin");
-		}
 
 		res.redirect("/");
 	} else {
@@ -88,10 +98,11 @@ router.post("/", function (req, res, next) {
 		req.body.email == process.env.EMAIL &&
 		req.body.senha == process.env.SENHA
 	) {
+		// Redireciona a página de admin
 		res.redirect("/admin");
 	} else {
-		// Se não tiver erro, mostra os dados do usuário
-		res.send(req.session.user);
+		// Se não tiver erro, redireciona ao inicio
+		res.redirect("/");
 	}
 });
 
