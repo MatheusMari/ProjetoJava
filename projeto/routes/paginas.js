@@ -20,7 +20,7 @@ function isAdmin(usuario) {
 // Configurar armazenamento do multer
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		var uploadDir = "uploads/";
+		var uploadDir = "public/images";
 		// Verificar se o diretório existe, caso contrário, criá-lo
 		if (!fs.existsSync(uploadDir)) {
 			fs.mkdirSync(uploadDir);
