@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página Inicial</title>
+    </head>
+    <body>
+        {{!
+        Abaixo temos um if no mustache,
+        se estiver logado, então mostra a barra navegação para login
+        }}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-</head>
+        {{#logado}}
+        {{> barra }}
+        {{/logado}}
 
-<body>
-    {{!
-    Abaixo temos um if no mustache,
-    se estiver logado, então mostra a barra navegação para login
-    }}
+        {{^ logado }}
+        <nav>
+            <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
+        </nav>
+        {{/ logado }}
 
-    {{#logado}}
-    {{> barra }}
-    {{/logado}}
+        {{!
+        Lista das 5 páginas criadas mais recentes
+        }}
+        {{^paginas.length}}
+        <h1>Ainda não foram criadas páginas</h1>
+        {{/paginas.length}}
 
-    {{^ logado }}
-    <nav>
-        <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
-    </nav>
-    {{/ logado }}
-
-    {{!
-    Lista das 5 páginas criadas mais recentes
-    }}
-    {{^paginas.length}}
-    <h1>Ainda não foram criadas páginas</h1>
-    {{/paginas.length}}
-
-    {{#paginas.length}}
-    <h1>Páginas mais recentes a serem criadas</h1>
-    <ol>
-        {{#paginas}}
-        <li><a href="/paginas/{{url}}">{{titulo}}</a></li>
-        {{/paginas}}
-    </ol>
-    {{/paginas.length}}
-</body>
-
+        {{#paginas.length}}
+        <div>
+            <h2>Deseja ver todas as paginas?</h2>
+            <a href="/paginas"><button type="button">Clique aqui</button></a>
+        </div>
+        <h1>Páginas mais recentes a serem criadas</h1>
+        <ol>
+            {{#paginas}}
+            <li><a href="/paginas/{{url}}">{{titulo}}</a></li>
+            {{/paginas}}
+        </ol>
+        {{/paginas.length}}
+    </body>
 </html>
