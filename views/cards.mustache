@@ -1,0 +1,46 @@
+<div class="column is-one-fifth">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="/images/{{imagem}}" alt="Placeholder image" />
+            </figure>
+        </div>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                </div>
+                <div class="media-content is-clipped">
+                    <p class="title is-4">{{titulo}}</p>
+                    <p class="subtitle is-6" style="margin-left: 8px;">
+                        <a href="/paginas/{{url}}">{{url}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ ^ admin }}
+    <button type="button" onclick="deleteItem('{{url}}')">Excluir</button>
+    <button type="submit">Editar</button>
+    {{ / admin }}
+</div>
+
+<script>
+function deleteItem(url) {
+    if (confirm('Tem certeza que deseja excluir este item?')) {
+        fetch(`/paginas/${url}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao excluir a página.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message);
+            location.reload(); // Recarrega a página para mostrar as alterações
+        })
+        .catch(error => console.error('Erro:', error));
+    }
+}
+</script>

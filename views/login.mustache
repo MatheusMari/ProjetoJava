@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="stylesheets/estilo.css">
+        <script src="https://kit.fontawesome.com/90f562a26e.js" crossorigin="anonymous"></script>
+        <title>Logar</title>
+    </head>
+    <body>
+        <div class="titulo">
+            <h1>Logue-se para prosseguir!</h1>
+        </div>
+
+        <div id="form">
+            {{!
+            Faz um GET para verificar se usuário existe
+            }}
+            <form method="GET" action="usuarios">
+                <h1 class="title">Logar</h1>
+                <label for="username">Nome</label>
+                <div class="input">
+                    <i class="fa-solid fa-user"></i>
+                    <input id="username" name="username" placeholder="Nome Completo" type="text">
+                </div>
+
+                <label for="senha">Senha</label>
+                <div class="input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input id="senha" name="senha" placeholder="Senha" type="password">
+                </div>
+
+                <div id="btn">
+                    <button type="submit">Logar</button>
+                </div>
+        </div>
+        </form>
+        </div>
+    </body>
+</html>
