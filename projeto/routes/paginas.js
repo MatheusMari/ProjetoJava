@@ -50,22 +50,26 @@ router.get("/", function (req, res, next) {
 
 /* POST paginas. */
 router.post("/", upload.single("imagem"), function (req, res, next) {
-	// Verificar se usuário está logado
-	if (!req.session.user) {
-		return res.send("Usuário não conectado");
+	if (req.paginas.find((p) => p.url === req.body.url) || req.body.url == "") {
+		res.status(415).send({ message: "URL já usada/indisponível" });
+	} else {
+		// Verificar se usuário está logado
+		if (!req.session.user) {
+			return res.send("Usuário não conectado");
+		}
+
+		var pagina = {
+			titulo: req.body.titulo || "Sem Título",
+			url: req.body.url,
+			html: req.body.html,
+			imagem: req.file ? req.file.filename : null, // Nome do arquivo da imagem salva
+		};
+
+		req.paginas = req.paginas || [];
+		req.paginas.push(pagina);
+
+		res.redirect("/paginas/" + req.body.url);
 	}
-
-	var pagina = {
-		titulo: req.body.titulo,
-		url: req.body.url,
-		html: req.body.html,
-		imagem: req.file ? req.file.filename : null, // Nome do arquivo da imagem salva
-	};
-
-	req.paginas = req.paginas || [];
-	req.paginas.push(pagina);
-
-	res.redirect("/paginas/" + req.body.url);
 });
 
 /* GET pagina criada */
@@ -78,6 +82,21 @@ router.get("/:url", function (req, res, next) {
 		res.send(pagina.html);
 	} else {
 		res.status(404).send("Página não encontrada");
+	}
+});
+
+// Método DELETE
+router.delete("/deletar/:url", async (req, res) => {
+	try {
+		// Acha o indice da página requerida
+		var pageIndex = req.paginas.findIndex((p) => p.url === req.params.url);
+
+		req.paginas.pop(pageIndex);
+	} catch (error) {
+		res.status(500).send({
+			message: "Erro ao excluir item",
+			error: error.message,
+		});
 	}
 });
 

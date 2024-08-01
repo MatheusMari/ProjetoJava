@@ -13,8 +13,7 @@ router.get("/", function (req, res, next) {
 
 /* POST criadorPaginas. */
 router.post("/", function (req, res, next) {
-	// Verificar se usuário está logado 
-	// (Caso o usuário demore muito para criar uma página ele será desconectado)
+	// Verificar se usuário está logado
 	if (!req.session.user) {
         res.send('Usuário não conectado');
 	}

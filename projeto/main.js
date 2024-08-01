@@ -13,6 +13,7 @@ var usersRouter = require("./routes/usuarios");
 var adminRouter = require("./routes/admin");
 var loginRouter = require("./routes/login");
 var criadorPaginasRouter = require("./routes/criadorPaginas");
+var editorPaginasRouter = require("./routes/editorPaginas");
 var paginasRouter = require("./routes/paginas");
 
 var app = express();
@@ -57,6 +58,7 @@ app.use("/login", loginRouter);
 app.use("/usuarios", usersRouter);
 app.use("/admin", adminRouter);
 app.use("/criarPagina", criadorPaginasRouter);
+app.use("/editarPagina", editorPaginasRouter);
 app.use("/paginas", paginasRouter);
 
 module.exports = app;

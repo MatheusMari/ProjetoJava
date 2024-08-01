@@ -2,7 +2,12 @@
     <div class="card">
         <div class="card-image">
             <figure class="image is-4by3">
+                {{#imagem}}
                 <img src="/images/{{imagem}}" alt="Placeholder image" />
+                {{/imagem}}
+                {{^imagem}}
+                <img src="/images/fundo.png" alt="Placeholder image" />
+                {{/imagem}}
             </figure>
         </div>
         <div class="card-content">
@@ -18,4 +23,29 @@
             </div>
         </div>
     </div>
+    {{ ^ admin }}
+    <button type="button" onclick="deleteItem('{{url}}')">Excluir</button>
+    <a href="/editarPagina/{{url}}"><button type="submit">Editar</button></a>
+    {{ / admin }}
 </div>
+
+<script>
+    function deleteItem(url) {
+        if (confirm('Tem certeza que deseja excluir este item?')) {
+            fetch(`/paginas/deletar/${url}`, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao excluir a página.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.message);
+                    location.reload(); // Recarrega a página para mostrar as alterações
+                })
+                .catch(error => console.error('Erro:', error));
+        }
+    }
+</script>

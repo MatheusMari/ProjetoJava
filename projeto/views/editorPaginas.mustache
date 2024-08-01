@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/90f562a26e.js" crossorigin="anonymous"></script>
+        <title>Editor de Página</title>
+    </head>
+    <body>
+        <form id="editForm" onsubmit="handleFormSubmit(event)" enctype="multipart/form-data">
+            <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
+            <textarea name="html" placeholder="Digite o HTML da página"></textarea>
+            <div>
+                <p>Escolha uma capa para seu site</p>
+                <input type="file" name="imagem" accept="image/*">
+            </div>
+            <button type="submit">Editar Página</button>
+        </form>
+
+        <script>
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                const url = window.location.pathname.split('/').pop(); // Get the last part of the URL
+                const form = document.getElementById('editForm');
+
+                editItem(url);
+            }
+
+            function editItem(url) {
+                if (confirm('Tem certeza que deseja editar este item?')) {
+                    fetch(`/editarPagina/${url}`, {
+                        method: 'PUT',
+                        body: new FormData(document.getElementById('editForm'))
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro ao editar a página.');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            alert(data.message);
+                            window.location.href = '/paginas'; // Redireciona para as paginas novamente
+                        })
+                        .catch(error => console.error('Erro:', error));
+                }
+            }
+        </script>
+    </body>
+</html>

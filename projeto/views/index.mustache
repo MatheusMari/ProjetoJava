@@ -1,119 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <!-- Importando a fonte Poppins do Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #87CEEB; /* Azul céu */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .logo {
-            margin-top: 20px; /* Espaço acima da imagem */
-            margin-bottom: 20px; /* Espaço abaixo da imagem */
-        }
-        .logo img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-        .container {
-            background-color: #FFFFFF; /* Branco */
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil para destaque */
-        }
-        h1, h2 {
-            margin: 0;
-            margin-bottom: 20px; /* Espaço abaixo dos títulos */
-            color: #333; /* Cor do texto para melhorar a legibilidade */
-        }
-        h1 {
-            font-size: 24px; /* Tamanho maior para títulos principais */
-        }
-        h2 {
-            font-size: 18px; /* Tamanho menor para subtítulos */
-        }
-        nav {
-            margin-bottom: 20px;
-        }
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-        button {
-            background-color: #007BFF;
-            color: #FFFFFF;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px; /* Espaço entre botões, se houver vários */
-            margin-bottom: 20px; /* Espaço abaixo dos botões */
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        ol {
-            padding-left: 20px;
-            margin-top: 0;
-            margin-bottom: 20px; /* Espaço abaixo da lista ordenada */
-        }
-    </style>
-</head>
-<body>
-    <div class="logo">
-        <!-- Substitua o caminho da imagem com o caminho correto relativo ao local do arquivo HTML -->
-        <img src="/projeto/views/logo.png" alt="Logo">
-    </div>
-    
-    {{!
-    Abaixo temos um if no mustache,
-    se estiver logado, então mostra a barra navegação para login
-    }}
-    {{#logado}}
-    {{> barra }}
-    {{/logado}}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página Inicial</title>
+    </head>
+    <body>
+        {{!
+        Abaixo temos um if no mustache,
+        se estiver logado, então mostra a barra navegação para login
+        }}
 
-    {{^ logado }}
-    <nav>
-        <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
-    </nav>
-    {{/ logado }}
+        {{#logado}}
+        {{> barra }}
+        {{/logado}}
 
-    {{!
-    Lista das 5 páginas criadas mais recentes
-    }}
-    {{^paginas.length}}
-    <div class="container">
+        {{^ logado }}
+        <nav>
+            <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
+        </nav>
+        {{/ logado }}
+
+        {{!
+        Lista das 5 páginas criadas mais recentes
+        }}
+        {{^paginas.length}}
         <h1>Ainda não foram criadas páginas</h1>
-    </div>
-    {{/paginas.length}}
+        {{/paginas.length}}
 
-    {{#paginas.length}}
-    <div class="container">
-        <h2>Deseja ver todas as páginas?</h2>
-        <a href="/paginas"><button type="button">Clique aqui</button></a>
-        
-        <h1>Páginas mais recentes criadas</h1>
+        {{#paginas.length}}
+        <div>
+            <h2>Deseja ver todas as paginas?</h2>
+            <a href="/paginas"><button type="button">Clique aqui</button></a>
+        </div>
+        <h1>Páginas mais recentes a serem criadas</h1>
         <ol>
             {{#paginas}}
             <li><a href="/paginas/{{url}}">{{titulo}}</a></li>
             {{/paginas}}
         </ol>
-    </div>
-    {{/paginas.length}}
-</body>
+        {{/paginas.length}}
+    </body>
 </html>
