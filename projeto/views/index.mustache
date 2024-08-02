@@ -79,25 +79,46 @@
         <!-- Substitua o caminho da imagem com o caminho correto relativo ao local do arquivo HTML -->
         <img src="/images/logo.png" width="200" height="200" alt="Logo">
     </div>
+    
     <div class="container">
+        {{!
+        Abaixo temos um if no mustache,
+        se estiver logado, então mostra a barra navegação para login
+        }}
+        {{#logado}}
+        {{> barra }}
+        {{/logado}}
+
         <h1>Bem-vindo ao Criador de Páginas!</h1>
 
+        {{^ logado }}
         <nav>
             <a href="/criarPagina"><button type="button">Criar Nova Página</button></a>
         </nav>
+        {{/ logado }}
 
+        {{!
+        Lista das 5 páginas criadas mais recentes
+        }}
+        {{^paginas.length}}
         <h1>Ainda não foram criadas páginas</h1>
+        {{/paginas.length}}
 
-        <div>
-            <h2>Deseja ver todas as páginas?</h2>
-            <a href="/paginas"><button type="button">Clique aqui</button></a>
-        </div>
-        
-        <h1>Páginas mais recentes criadas</h1>
-        <ol>
-            <!-- Exemplo de item na lista -->
-            <li><a href="/paginas/{{url}}">{{titulo}}</a></li>
-        </ol>
+        <br>
+
+        {{#paginas.length}}
+            <div>
+                <h2>Deseja ver todas as páginas?</h2>
+                <a href="/paginas"><button type="button">Clique aqui</button></a>
+            </div>
+
+            <h1>Páginas mais recentes a serem criadas</h1>
+            <ol>
+                {{#paginas}}
+                <li><a href="/paginas/{{url}}">{{titulo}}</a></li>
+                {{/paginas}}
+            </ol>
+        {{/paginas.length}}
     </div>
 </body>
 </html>

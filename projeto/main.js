@@ -52,6 +52,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 app.use("/", indexRouter);
 app.use("/cadastrar", cadastroRouter);
 app.use("/login", loginRouter);

@@ -9,99 +9,97 @@
 <body>
     <style>
        /* styles.css */
-/* Importar a fonte Poppins do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-body {
-    top: 50%;
-    left: 50%;
-    font-family: 'Poppins', sans-serif;
-    background-color: #89c4f8; /* Cor de fundo clara para a página */
-    margin: 0;
-    padding: 0;
-}
-h1 {
-    color: #ffffff; /* Azul para o título */
-    text-align: center;
-    text-shadow: 0 0 10px rgba(0,0,0,0.1);
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-h2{
-    text-align: center;
-    color: white;
-    text-shadow: 0px 0px 10px #0000003d;
-}
-.form {
-    font-family: 'Poppins', sans-serif;
-    width: 69%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff; /* Cor de fundo branca para o formulário */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.input {
-    position: relative;
-    margin-bottom: 20px;
-}
-input[type="text"], textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-textarea {
-    height: 100px;
-    resize: vertical;
-    font-family: 'Poppins', sans-serif;
-}
-#btn {
-    display: flex;
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-}
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #0000ff; /* Azul para o botão */
-    color: #ffffff; /* Texto branco no botão */
-    font-size: 16px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-}
-button:hover {
-    background-color: #0000cc; /* Azul mais escuro quando o botão é pressionado */
-}
-input[type="file"] {
-    margin-left: 10px;
-    margin: 10px;
-    font-family: 'Poppins', sans-serif;
-}
+    /* Importar a fonte Poppins do Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    body {
+        top: 50%;
+        left: 50%;
+        font-family: 'Poppins', sans-serif;
+        background-color: #89c4f8; /* Cor de fundo clara para a página */
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: #ffffff; /* Azul para o título */
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2{
+        text-align: center;
+        color: white;
+        text-shadow: 0px 0px 10px #0000003d;
+    }
+    .form {
+        font-family: 'Poppins', sans-serif;
+        width: 69%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff; /* Cor de fundo branca para o formulário */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .input {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    textarea {
+        height: 100px;
+        resize: vertical;
+        font-family: 'Poppins', sans-serif;
+    }
+    #btn {
+        display: flex;
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #0000ff; /* Azul para o botão */
+        color: #ffffff; /* Texto branco no botão */
+        font-size: 16px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+    }
+    button:hover {
+        background-color: #0000cc; /* Azul mais escuro quando o botão é pressionado */
+    }
+    input[type="file"] {
+        margin-left: 10px;
+        margin: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
     </style>
-                    <h1>Bem vindo a pagina de pré criação de site!</h1>
+    <h1>Bem vindo a pagina de pré criação de site!</h1>
     <div class="form">
         <form action="/paginas" method="POST" enctype="multipart/form-data">
             <div class="input">
-            <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
+                <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
             </div>
             <div class="input">
-            <input name="url" placeholder="URL Desejado" type="text">
+                <input name="url" placeholder="URL Desejado" type="text">
             </div>
             <textarea name="html" placeholder="Digite o HTML da página"></textarea>
             
-                
-                <p>Para prosseguir escolha uma capa para seu site</p>
-               
-
+            <p>Para prosseguir, escolha uma capa para seu site</p>
+            
             <div id="btn">
-            <button type="submit">Criar Página</button>
-            <button type="submit">Voltar ao inicio</button>
-            <input type="file" name="imagem" accept="image/*">
-        </div>
+                <button type="submit">Criar Página</button>
+                <button type="button" class="link-button" onclick="window.location.href='/'">Voltar ao início</button>
+                <input type="file" name="imagem" accept="image/*">
+            </div>
         </form>
     </div>
-        <h2>Explore sua criatividade na criação do seu site!</h2>
+    <h2>Explore sua criatividade na criação do seu site!</h2>
     </body>
 </html>
