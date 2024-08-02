@@ -4,6 +4,7 @@ var router = express.Router();
 var validadorCadastro = require("../validator/Cadastro.js");
 var validadorLogin = require("../validator/Login.js");
 
+// Lista de usuários no servidor
 var usuarios = [];
 
 // Função para comparar usuários ignorando os campos "termos" e "email"
@@ -79,11 +80,7 @@ router.post("/", function (req, res, next) {
 	usuarios.push(user);
 
 	// Verifica se o usuário é um admin
-	if (
-		req.body.username == process.env.USER &&
-		req.body.email == process.env.EMAIL &&
-		req.body.senha == process.env.SENHA
-	) {
+	if (isAdmin(user)) {
 		// Redireciona a página de admin
 		res.redirect("/admin");
 	} else {

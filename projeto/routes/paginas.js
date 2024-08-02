@@ -6,12 +6,22 @@ var fs = require("fs"); // Para ler arquivos e diretórios
 
 // Função para verificar se o usuário é um admin
 function isAdmin(usuario) {
-	if (
-		usuario.username == process.env.USER &&
-		usuario.email == process.env.EMAIL &&
-		usuario.senha == process.env.SENHA
-	) {
-		return true;
+	// Condição de ter email cadastrado (logar diretamente pela aba de cadastro)
+	if (usuario.email) {
+		if (
+			usuario.username == process.env.USER &&
+			usuario.email == process.env.EMAIL &&
+			usuario.senha == process.env.SENHA
+		) {
+			return true;
+		}
+	} else {
+		if (
+			usuario.username == process.env.USER &&
+			usuario.senha == process.env.SENHA
+		) {
+			return true;
+		}
 	}
 
 	return false;
@@ -40,6 +50,8 @@ router.get("/", function (req, res, next) {
 	if (!req.session.user) {
 		return res.send("Usuário não conectado");
 	}
+
+	console.log(req.session.user, isAdmin(req.session.user));
 
 	res.render("paginas", {
 		admin: isAdmin(req.session.user),
