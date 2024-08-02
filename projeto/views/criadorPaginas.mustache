@@ -19,6 +19,16 @@
         margin: 0;
         padding: 0;
     }
+    .logo {
+        margin-top: 20px; /* Espaço acima da imagem */
+        margin-bottom: 20px; /* Espaço abaixo da imagem */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .logo img {
+        width: 10%;
+    }
     h1 {
         color: #ffffff; /* Azul para o título */
         text-align: center;
@@ -83,6 +93,10 @@
     <h1>Bem vindo a pagina de pré criação de site!</h1>
     <div class="form">
         <form action="/paginas" method="POST" enctype="multipart/form-data">
+            <div class="logo">
+                <!-- Substitua o caminho da imagem com o caminho correto relativo ao local do arquivo HTML -->
+                <img src="/images/logo.png" alt="Logo">
+            </div>
             <div class="input">
                 <input name="titulo" placeholder="Título (Na lista de páginas)" type="text">
             </div>

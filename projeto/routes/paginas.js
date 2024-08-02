@@ -77,9 +77,61 @@ router.get("/:url", function (req, res, next) {
 	// Variável Boolean que retorna se encontrou dada url na lista de paginas
 	var pagina = req.paginas.find((p) => p.url === req.params.url);
 
-	// Renderiza o html na página
+	// Renderiza o html na página com uma barra para voltar ao início
 	if (pagina) {
-		res.send(pagina.html);
+		res.send(`
+		<style>
+			body {
+				margin: 0;
+				font-family: 'Poppins', sans-serif;
+				background-color: #f4f4f4; /* Fundo claro para o corpo */
+				color: #333; /* Cor do texto */
+				text-align: center;
+				align-items: center;
+			}
+			nav {
+				background-color: #ffffff; /* Fundo branco para a barra de navegação */
+				border-bottom: 1px solid #ddd; /* Linha sutil na parte inferior */
+				padding: 10px 20px;
+				display: flex;
+				justify-content: center; /* Alinhar o conteúdo centralizado */
+			}
+			.btn-container {
+				display: flex;
+				gap: 10px; /* Espaço entre os botões */
+			}
+			.btn {
+				padding: 10px 20px;
+				border: none;
+				border-radius: 4px;
+				background-color: #007bff; /* Azul mais suave */
+				color: #ffffff; /* Texto branco */
+				font-size: 16px;
+				cursor: pointer;
+				text-decoration: none; /* Remove sublinhado do link */
+				display: inline-flex;
+				align-items: center; /* Centraliza o texto verticalmente */
+				justify-content: center; /* Centraliza o texto horizontalmente */
+			}
+			.btn:hover {
+				background-color: #0056b3; /* Azul escuro no hover */
+				transition: background-color 0.3s ease; /* Transição suave */
+			}
+			.btn:active {
+				background-color: #004494; /* Azul ainda mais escuro ao clicar */
+			}
+			.btn a {
+				color: #ffffff; /* Garante que o link dentro do botão seja branco */
+				text-decoration: none; /* Remove sublinhado do link */
+			}
+		</style>
+		<nav>
+			<div class="btn-container">
+				<a href="/" class="btn">Voltar ao início</a>
+			</div>
+		</nav>
+		${pagina.html}
+		`);
 	} else {
 		res.status(404).send("Página não encontrada");
 	}
