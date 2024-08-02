@@ -15,6 +15,7 @@ var loginRouter = require("./routes/login");
 var criadorPaginasRouter = require("./routes/criadorPaginas");
 var editorPaginasRouter = require("./routes/editorPaginas");
 var paginasRouter = require("./routes/paginas");
+var logoutRouter = require("./routes/logout");
 
 var app = express();
 
@@ -61,5 +62,6 @@ app.use("/admin", adminRouter);
 app.use("/criarPagina", criadorPaginasRouter);
 app.use("/editarPagina", editorPaginasRouter);
 app.use("/paginas", paginasRouter);
+app.use("/logout", logoutRouter); 
 
 module.exports = app;
