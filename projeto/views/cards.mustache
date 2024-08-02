@@ -24,8 +24,10 @@
         </div>
     </div>
     {{ ^ admin }}
-    <button type="button" onclick="deleteItem('{{url}}')">Excluir</button>
-    <a href="/editarPagina/{{url}}"><button type="submit">Editar</button></a>
+    <div class="botoes">
+        <button type="button" onclick="deleteItem('{{url}}')">Excluir</button>
+        <a href="/editarPagina/{{url}}"><button type="submit">Editar</button></a>
+    </div>
     {{ / admin }}
 </div>
 

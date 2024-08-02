@@ -6,20 +6,6 @@ var validadorLogin = require("../validator/Login.js");
 
 var usuarios = [];
 
-// Apenas para testes
-usuarios.push({
-	username: "111",
-	email: "111@1.com",
-	senha: "111111",
-	termos: true,
-});
-usuarios.push({
-	username: "admin",
-	email: "admin@email.com",
-	senha: "admin123",
-	termos: true,
-});
-
 // Função para comparar usuários ignorando os campos "termos" e "email"
 function comparaUsuario(usuarioA, usuarioB) {
 	return (
