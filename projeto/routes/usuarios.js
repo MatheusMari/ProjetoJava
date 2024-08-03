@@ -30,6 +30,15 @@ function isAdmin(usuario) {
 
 /* GET usuarios */
 router.get("/", function (req, res, next) {
+	// Cria conta admin
+	if (usuarios.length == 0) {
+		usuarios.push({
+			username: "admin",
+			email: "admin@email. com",
+			senha: "admin123"
+		});
+	}
+
 	// Pega os dados do usuário
 	var usuarioLogin = {
 		username: req.query.username,

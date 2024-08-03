@@ -51,8 +51,6 @@ router.get("/", function (req, res, next) {
 		return res.send("Usuário não conectado");
 	}
 
-	console.log(req.session.user, isAdmin(req.session.user));
-
 	res.render("paginas", {
 		admin: isAdmin(req.session.user),
 		logado: !req.session.user,
@@ -156,6 +154,8 @@ router.delete("/deletar/:url", async (req, res) => {
 		var pageIndex = req.paginas.findIndex((p) => p.url === req.params.url);
 
 		req.paginas.pop(pageIndex);
+
+		res.status(200).send({ message: "Página excluída com sucesso" });
 	} catch (error) {
 		res.status(500).send({
 			message: "Erro ao excluir item",
